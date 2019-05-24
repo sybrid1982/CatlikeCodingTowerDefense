@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class Game : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +12,16 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     GameTileContentFactory tileContentFactory = default;
+
+    [SerializeField]
+    EnemyFactory enemyFactory = default;
+
+    [SerializeField]
+    float spawnSpeed = 1f;
+
+    float spawnProgress = 0;
+
+    EnemyCollection enemies = new EnemyCollection();
 
     Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -39,6 +51,14 @@ public class Game : MonoBehaviour
         {
             HandleAlternativeTouch();
         }
+
+        spawnProgress += spawnSpeed * Time.deltaTime;
+        while (spawnProgress >= 1)
+        {
+            spawnProgress -= 1f;
+            SpawnEnemy();
+        }
+        enemies.GameUpdate();
     }
 
     private void HandleAlternativeTouch()
@@ -64,5 +84,13 @@ public class Game : MonoBehaviour
         {
             board.ToggleWall(tile);
         }
+    }
+
+    void SpawnEnemy()
+    {
+        GameTile spawnPoint = board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
+        Enemy enemy = enemyFactory.Get();
+        enemy.SpawnOn(spawnPoint);
+        enemies.Add(enemy);
     }
 }

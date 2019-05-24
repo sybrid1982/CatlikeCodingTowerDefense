@@ -882,6 +882,8 @@ MonoBehaviour:
   boardSize: {x: 11, y: 11}
   board: {fileID: 1406948755}
   tileContentFactory: {fileID: 11400000, guid: 8a42f97ae16bd6f45b4f430670def959, type: 2}
+  enemyFactory: {fileID: 11400000, guid: cb33798dd8c26674a919abf2355ead4b, type: 2}
+  spawnSpeed: 1
 --- !u!4 &986897524
 Transform:
   m_ObjectHideFlags: 0
@@ -1023,7 +1025,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 25
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1639,7 +1641,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1

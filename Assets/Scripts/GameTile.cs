@@ -1,6 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
+
+public enum GameTileContentType
+{
+    Empty, Destination, Wall, SpawnPoint
+}
+
 public class GameTile : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +17,10 @@ public class GameTile : MonoBehaviour
     int distance;
 
     GameTileContent content;
+
+    public Vector3 ExitPoint { get; private set; }
+
+    public Direction PathDirection { get; private set; }
 
     public GameTileContent Content
     {
@@ -32,11 +42,6 @@ public class GameTile : MonoBehaviour
         arrow.gameObject.SetActive(false);
     }
 
-    public enum GameTileContentType
-    {
-        Empty, Destination, Wall, SpawnPoint
-    }
-
     public void ClearPath()
     {
         distance = int.MaxValue;
@@ -47,14 +52,16 @@ public class GameTile : MonoBehaviour
     {
         distance = 0;
         nextOnPath = null;
+        ExitPoint = transform.localPosition;
     }
 
     public bool HasPath => distance != int.MaxValue;
-    public GameTile GrowPathNorth() => GrowPathTo(north);
-    public GameTile GrowPathEast() => GrowPathTo(east);
-    public GameTile GrowPathSouth() => GrowPathTo(south);
-    public GameTile GrowPathWest() => GrowPathTo(west);
+    public GameTile GrowPathNorth() => GrowPathTo(north, Direction.South);
+    public GameTile GrowPathEast() => GrowPathTo(east, Direction.West);
+    public GameTile GrowPathSouth() => GrowPathTo(south, Direction.North);
+    public GameTile GrowPathWest() => GrowPathTo(west, Direction.East);
     public bool IsAlternative { get; set; }
+    public GameTile NextTileOnPath => nextOnPath;
 
     public void ShowPath ()
     {
@@ -71,7 +78,7 @@ public class GameTile : MonoBehaviour
             westRotation;
     }
 
-    GameTile GrowPathTo(GameTile neighbor)
+    GameTile GrowPathTo(GameTile neighbor, Direction direction)
     {
         Debug.Assert(HasPath, "No Path!");
         if (neighbor == null || neighbor.HasPath)
@@ -80,6 +87,8 @@ public class GameTile : MonoBehaviour
         }
         neighbor.distance = distance + 1;
         neighbor.nextOnPath = this;
+        neighbor.ExitPoint = (neighbor.transform.localPosition + transform.localPosition) * 0.5f;
+        neighbor.PathDirection = direction;
         return neighbor.Content.Type != GameTileContentType.Wall ? neighbor : null;
     }
 
