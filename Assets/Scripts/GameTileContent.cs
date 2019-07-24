@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using static GameTile;
 
+[SelectionBase]
 public class GameTileContent : MonoBehaviour
 {
     [SerializeField]
@@ -23,4 +23,13 @@ public class GameTileContent : MonoBehaviour
     }
 
     public GameTileContentType Type => type;
+    public bool BlocksPath =>
+        Type == GameTileContentType.Wall || Type == GameTileContentType.Tower;
+
+    public virtual void GameUpdate() { }
+}
+
+public enum GameTileContentType
+{
+    Empty, Destination, Wall, SpawnPoint, Tower
 }

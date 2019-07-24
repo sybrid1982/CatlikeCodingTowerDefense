@@ -90,6 +90,12 @@
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity Hub/2019.3.0a2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -276,6 +282,21 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>E:/Unity Hub/2019.3.0a2/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="GitHub.Api.45">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
+ </Reference>
+ <Reference Include="GitHub.Logging">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll</HintPath>
+ </Reference>
+ <Reference Include="GitHub.Unity.45">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll</HintPath>
+ </Reference>
+ <Reference Include="GitHub.UnityShim">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll</HintPath>
+ </Reference>
+ <Reference Include="sfw.net">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -290,21 +311,6 @@
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Api.45">
- <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Unity.45">
- <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll</HintPath>
- </Reference>
- <Reference Include="sfw.net">
- <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.UnityShim">
- <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Logging">
- <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

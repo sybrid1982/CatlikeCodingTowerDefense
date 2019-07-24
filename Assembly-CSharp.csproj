@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Direction.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyCollection.cs" />
+     <Compile Include="Assets\Scripts\EnemyData.cs" />
      <Compile Include="Assets\Scripts\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\GameBoard.cs" />
@@ -63,6 +64,10 @@
      <Compile Include="Assets\Scripts\GameTile.cs" />
      <Compile Include="Assets\Scripts\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\LaserTower.cs" />
+     <Compile Include="Assets\Scripts\MortarTower.cs" />
+     <Compile Include="Assets\Scripts\TargetPoint.cs" />
+     <Compile Include="Assets\Scripts\Tower.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -89,6 +94,12 @@
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>C:/Users/Sybrid/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity Hub/2019.3.0a2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
