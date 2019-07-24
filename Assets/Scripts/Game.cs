@@ -19,6 +19,14 @@ public class Game : MonoBehaviour
     [SerializeField]
     float spawnSpeed = 1f;
 
+    [SerializeField]
+    EnemyData enemyData = default;
+
+    [SerializeField]
+    EnemyData fastEnemyData = default;
+
+    int enemySpawnCounter = 0;
+
     float spawnProgress = 0;
 
     EnemyCollection enemies = new EnemyCollection();
@@ -63,11 +71,23 @@ public class Game : MonoBehaviour
             selectedTowerType = TowerType.Mortar;
         }
 
+        // Spawn idea - an object should exist that constitutes a 'timeline'
+        // as spawn progress increases, we check to see where we are on the timeline now vs before
+        // anything in that time range should then be spawned
+        // Spawn progress thing would hold references to enemyData
         spawnProgress += spawnSpeed * Time.deltaTime;
         while (spawnProgress >= 1)
         {
             spawnProgress -= 1f;
-            SpawnEnemy();
+            if (enemySpawnCounter < 3)
+            {
+                SpawnEnemy(enemyData);
+                enemySpawnCounter++;
+            } else
+            {
+                SpawnEnemy(fastEnemyData);
+                enemySpawnCounter = 0;
+            }
         }
         enemies.GameUpdate();
         Physics.SyncTransforms();
@@ -106,10 +126,11 @@ public class Game : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(EnemyData enemyData)
     {
         GameTile spawnPoint = board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
         Enemy enemy = enemyFactory.Get();
+        enemy.SetUp(enemyData);
         enemy.SpawnOn(spawnPoint);
         enemies.Add(enemy);
     }

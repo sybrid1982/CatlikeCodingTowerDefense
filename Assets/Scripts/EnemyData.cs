@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData : MonoBehaviour
+[CreateAssetMenu]
+public class EnemyData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // An Enemy Type will need at least a speed, a model, and a material
+    // Health is an obvious addition if we're going to have damage being done
+    [SerializeField]
+    public float speed = 1f;
+    [SerializeField]
+    public int health = 50;
+    [SerializeField]
+    public Mesh mesh;
+    [SerializeField]
+    public Material material;
+    [SerializeField]
+    public float scale = 1f;
+    // We can then pass this scriptable object to newly generated enemies from the factory to set the initial values;
+>>>>>>> 6aedc64e70774aceb11a46635b0635efb514b5e8
 }

@@ -52,7 +52,7 @@ public static class DirectionExtensions
         Vector3.left * 0.5f
     };
 
-    public static Vector3 GetHalfVector(this Direction direction)
+    public static Vector3 GetHalfVector (this Direction direction)
     {
         return halfVectors[(int)direction];
     }

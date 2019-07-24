@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,7 +7,8 @@ public class Enemy : MonoBehaviour
 
     GameTile tileFrom, tileTo;
     Vector3 positionFrom, positionTo;
-    float progress, progressFactor;
+    float progress, progressFactor, speed;
+    int health;
 
     Direction direction;
     DirectionChange directionChange;
@@ -15,6 +17,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     Transform model = default;
+
+    [SerializeField]
+    Transform model = default;
+
+    EnemyData enemyData;
 
     public EnemyFactory OriginFactory
     {
@@ -43,8 +50,9 @@ public class Enemy : MonoBehaviour
             OriginFactory.Reclaim(this);
             return false;
         }
-        progress += Time.deltaTime;
-        while (progress >= 1f)
+
+        progress += Time.deltaTime * progressFactor;
+        while(progress >= 1f)
         {
             if (tileTo == null)
             {
@@ -82,17 +90,15 @@ public class Enemy : MonoBehaviour
         directionChange = DirectionChange.None;
         directionAngleFrom = directionAngleTo = direction.GetAngle();
         transform.localRotation = direction.GetRotation();
-        progressFactor = 2f;
+        progressFactor = 2f * speed;
     }
 
-    void PrepareOutro()
+    internal void SetUp(EnemyData enemyData)
     {
-        positionTo = tileFrom.transform.localPosition;
-        directionChange = DirectionChange.None;
-        directionAngleTo = direction.GetAngle();
-        model.localPosition = Vector3.zero;
-        transform.localRotation = direction.GetRotation();
-        progressFactor = 2f;
+        speed = enemyData.speed;
+        health = enemyData.health;
+        model.GetComponent<MeshRenderer>().material = enemyData.material;
+        model.GetComponent<MeshFilter>().mesh = enemyData.mesh;
     }
 
     void PrepareNextState()
@@ -118,33 +124,44 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void PrepareOutro()
+    {
+        positionTo = tileFrom.transform.localPosition;
+        directionChange = DirectionChange.None;
+        directionAngleTo = direction.GetAngle();
+        model.localPosition = Vector3.zero;
+        transform.localRotation = direction.GetRotation();
+        progressFactor = 2f * speed;
+    }
+
     void PrepareForward()
     {
         transform.localRotation = direction.GetRotation();
         directionAngleTo = direction.GetAngle();
-        model.localPosition = Vector3.zero;
-        progressFactor = 1f;
+        model.localPosition = new Vector3(0f, model.localPosition.y, model.localPosition.z);
+        progressFactor = speed;
     }
 
     void PrepareTurnRight()
     {
         directionAngleTo = directionAngleFrom + 90f;
-        model.localPosition = new Vector3(-0.5f, 0f);
+        model.localPosition = new Vector3(-0.5f, model.localPosition.y, model.localPosition.z);
         transform.localPosition = positionFrom + direction.GetHalfVector();
-        progressFactor = 1f / (Mathf.PI * 0.25f);
+        progressFactor = speed / (Mathf.PI * 0.25f);
     }
 
     void PrepareTurnLeft()
     {
         directionAngleTo = directionAngleFrom - 90f;
-        model.localPosition = new Vector3(0.5f, 0f);
+        model.localPosition = new Vector3(0.5f, model.localPosition.y, model.localPosition.z);
         transform.localPosition = positionFrom + direction.GetHalfVector();
-        progressFactor = 1f / (Mathf.PI * 0.25f);
+        progressFactor = speed / (Mathf.PI * 0.25f);
     }
     void PrepareTurnAround()
     {
         directionAngleTo = directionAngleFrom + 180f;
-        model.localPosition = Vector3.zero;
-        progressFactor = 2f;
+        model.localPosition = new Vector3(0f, model.localPosition.y, model.localPosition.z);
+        transform.localPosition = positionFrom;
+        progressFactor = 2f * speed;
     }
 }
