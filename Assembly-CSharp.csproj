@@ -58,12 +58,22 @@
      <Compile Include="Assets\Scripts\EnemyCollection.cs" />
      <Compile Include="Assets\Scripts\EnemyData.cs" />
      <Compile Include="Assets\Scripts\EnemyFactory.cs" />
+     <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\GameBehavior.cs" />
      <Compile Include="Assets\Scripts\GameBoard.cs" />
      <Compile Include="Assets\Scripts\GameObjectFactory.cs" />
      <Compile Include="Assets\Scripts\GameTile.cs" />
      <Compile Include="Assets\Scripts\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\LaserTower.cs" />
+     <Compile Include="Assets\Scripts\MortarTower.cs" />
+     <Compile Include="Assets\Scripts\Shell.cs" />
+     <Compile Include="Assets\Scripts\Smoke.cs" />
+     <Compile Include="Assets\Scripts\TargetPoint.cs" />
+     <Compile Include="Assets\Scripts\Tower.cs" />
+     <Compile Include="Assets\Scripts\WarEntity.cs" />
+     <Compile Include="Assets\Scripts\WarFactory.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/sbridges/Documents/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

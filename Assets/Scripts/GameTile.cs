@@ -1,12 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
-public enum GameTileContentType
-{
-    Empty, Destination, Wall, SpawnPoint
-}
-
 public class GameTile : MonoBehaviour
 {
     [SerializeField]
@@ -89,7 +83,7 @@ public class GameTile : MonoBehaviour
         neighbor.nextOnPath = this;
         neighbor.ExitPoint = (neighbor.transform.localPosition + direction.GetHalfVector());
         neighbor.PathDirection = direction;
-        return neighbor.Content.Type != GameTileContentType.Wall ? neighbor : null;
+        return neighbor.Content.BlocksPath ? null : neighbor;
     }
 
     static Quaternion

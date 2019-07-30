@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static GameTile;
 
 public class GameTileContent : MonoBehaviour
 {
@@ -23,4 +22,12 @@ public class GameTileContent : MonoBehaviour
     }
 
     public GameTileContentType Type => type;
+    public bool BlocksPath => Type == GameTileContentType.Wall || Type == GameTileContentType.Tower;
+
+    public virtual void GameUpdate() { }
+}
+
+public enum GameTileContentType
+{
+    Empty, Destination, Wall, SpawnPoint, Tower
 }

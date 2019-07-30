@@ -13,6 +13,14 @@ public class EnemyFactory : GameObjectFactory
         return instance;
     }
 
+    public Enemy Get(EnemyData data)
+    {
+        Enemy instance = CreateGameObjectInstance(prefab);
+        instance.SetUp(data);
+        instance.OriginFactory = this;
+        return instance;
+    }
+
     public void Reclaim(Enemy enemy)
     {
         Debug.Assert(enemy.OriginFactory == this, "Wrong factory reclaimed!");

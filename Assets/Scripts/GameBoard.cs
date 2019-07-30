@@ -23,6 +23,8 @@ public class GameBoard : MonoBehaviour
     List<GameTile> spawnPoints = new List<GameTile>();
     Queue<GameTile> searchFrontier = new Queue<GameTile>();
 
+    List<GameTileContent> updatingContent = new List<GameTileContent>();
+
     public bool ShowGrid
     {
         get => _showGrid;
@@ -45,14 +47,15 @@ public class GameBoard : MonoBehaviour
     public bool ShowPath
     {
         get => _showPath;
-        set {
+        set
+        {
             _showPath = value;
             if (_showPath)
             {
                 foreach (GameTile tile in tiles)
                 {
                     tile.ShowPath();
-                }    
+                }
             }
             else
             {
@@ -66,7 +69,7 @@ public class GameBoard : MonoBehaviour
 
     public int SpawnPointCount => spawnPoints.Count;
 
-    public void Initialize (Vector2Int size, GameTileContentFactory contentFactory)
+    public void Initialize(Vector2Int size, GameTileContentFactory contentFactory)
     {
         this.size = size;
         this.contentFactory = contentFactory;
@@ -138,7 +141,8 @@ public class GameBoard : MonoBehaviour
                     searchFrontier.Enqueue(tile.GrowPathSouth());
                     searchFrontier.Enqueue(tile.GrowPathEast());
                     searchFrontier.Enqueue(tile.GrowPathWest());
-                } else
+                }
+                else
                 {
 
                     searchFrontier.Enqueue(tile.GrowPathWest());
@@ -186,11 +190,11 @@ public class GameBoard : MonoBehaviour
         return null;
     }
 
-    public GameTile GetSpawnPoint (int index)
+    public GameTile GetSpawnPoint(int index)
     {
         return spawnPoints[index];
     }
-    public void ToggleDestination (GameTile tile)
+    public void ToggleDestination(GameTile tile)
     {
         if (tile.Content.Type == GameTileContentType.Destination)
         {
@@ -209,7 +213,7 @@ public class GameBoard : MonoBehaviour
         }
     }
 
-    public void ToggleWall (GameTile tile)
+    public void ToggleWall(GameTile tile)
     {
         if (tile.Content.Type == GameTileContentType.Wall)
         {
@@ -241,6 +245,50 @@ public class GameBoard : MonoBehaviour
         {
             tile.Content = contentFactory.Get(GameTileContentType.SpawnPoint);
             spawnPoints.Add(tile);
+        }
+    }
+
+    public void ToggleTower(GameTile tile, TowerType towerType)
+    {
+        if (tile.Content.Type == GameTileContentType.Tower)
+        {
+            updatingContent.Remove(tile.Content);
+            if (((Tower)tile.Content).TowerType == towerType)
+            {
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
+                FindPaths();
+            }
+            else
+            {
+                tile.Content = contentFactory.Get(towerType);
+                updatingContent.Add(tile.Content);
+            }
+        }
+        else if (tile.Content.Type == GameTileContentType.Empty)
+        {
+            tile.Content = contentFactory.Get(towerType);
+            if (FindPaths())
+            {
+                updatingContent.Add(tile.Content);
+            }
+            else
+            {
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
+                FindPaths();
+            }
+        }
+        else if (tile.Content.Type == GameTileContentType.Wall)
+        {
+            tile.Content = contentFactory.Get(towerType);
+            updatingContent.Add(tile.Content);
+        }
+    }
+
+    public void GameUpdate()
+    {
+        for (int i = 0; i < updatingContent.Count; i++)
+        {
+            updatingContent[i].GameUpdate();
         }
     }
 }

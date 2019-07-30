@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : GameBehavior
 {
     EnemyFactory originFactory;
 
     GameTile tileFrom, tileTo;
     Vector3 positionFrom, positionTo;
     float progress, progressFactor, speed;
-    int health;
+    float Health { get; set; }
 
     Direction direction;
     DirectionChange directionChange;
@@ -38,8 +38,13 @@ public class Enemy : MonoBehaviour
         PrepareIntro();
     }
 
-    public bool GameUpdate()
+    public override bool GameUpdate()
     {
+        if(Health <= 0)
+        {
+            OriginFactory.Reclaim(this);
+            return false;
+        }
         progress += Time.deltaTime * progressFactor;
         while(progress >= 1f)
         {
@@ -64,6 +69,12 @@ public class Enemy : MonoBehaviour
         return true;
     }
 
+    public void ApplyDamage(float damage)
+    {
+        Debug.Assert(damage >= 0f, "Negative Damage Applied");
+        Health -= damage;
+    }
+
     // State-ish stuff
     void PrepareIntro()
     {
@@ -79,7 +90,7 @@ public class Enemy : MonoBehaviour
     internal void SetUp(EnemyData enemyData)
     {
         speed = enemyData.speed;
-        health = enemyData.health;
+        Health = enemyData.health;
         model.GetComponent<MeshRenderer>().material = enemyData.material;
         model.GetComponent<MeshFilter>().mesh = enemyData.mesh;
     }
