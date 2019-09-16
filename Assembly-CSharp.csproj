@@ -70,6 +70,8 @@
      <Compile Include="Assets\Scripts\MortarTower.cs" />
      <Compile Include="Assets\Scripts\Shell.cs" />
      <Compile Include="Assets\Scripts\Smoke.cs" />
+     <Compile Include="Assets\Scripts\SpawnOrder.cs" />
+     <Compile Include="Assets\Scripts\SpawnTimeline.cs" />
      <Compile Include="Assets\Scripts\TargetPoint.cs" />
      <Compile Include="Assets\Scripts\Tower.cs" />
      <Compile Include="Assets\Scripts\WarEntity.cs" />
@@ -100,6 +102,12 @@
  </Reference>
  <Reference Include="Unity.ugui.Editor">
  <HintPath>C:/Users/sbridges/Documents/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ugui.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>C:/Users/sbridges/Documents/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>C:/Users/sbridges/Documents/CatlikeCodingTowerDefense/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
